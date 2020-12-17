@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Toggle from "./Components/Toggle";
+import imgSrc from './food-tech.jpg';
+import './App.css'
+export default class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+          
+        <Toggle>
+          <div className="cardProfile">
+            <img src={imgSrc} alt='' width="250px"/>
+            <div>
+              <h4>Full Name: Faten Fadhlaoui</h4>
+              <h4>Bio: Food Tech Engineer</h4>
+              <h4>Profession: Web Dev Apprentice</h4>
+            </div>
+          </div>
+          <h3>Count since Component is mounted: {this.state.count} </h3>
+        </Toggle>
+      </div>
+    );
+  }
+
+  componentDidMount(){ 
+    this.myInterval = setInterval (()=>
+      { this.setState({count : this.state.count + 1})
+    } , 1000 )
+  }
+
 }
-
-export default App;
